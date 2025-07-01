@@ -2,11 +2,13 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: rabbitmq
+  namespace: rabbits
 ---
-kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
 metadata:
   name: rabbitmq
+  namespace: rabbits
 rules:
   - apiGroups:
       - ""
@@ -17,18 +19,16 @@ rules:
       - list
       - watch
 ---
-kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
 metadata:
   name: rabbitmq
   namespace: rabbits
 subjects:
   - kind: ServiceAccount
     name: rabbitmq
-    namespace: rabbits #-----------------!!!--------------------
+    namespace: rabbits # Must match the ServiceAccount namespace
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
   name: rabbitmq
-
-  # Not necessary tho!

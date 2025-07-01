@@ -3,26 +3,23 @@ kind: Service
 metadata:
   name: rabbitmq
   # annotations:
-  #       prometheus.io/scrape: 'true'
-  #       prometheus.io/port: '9090'
+  #   prometheus.io/scrape: 'true'
+  #   prometheus.io/port: '9090'
 spec:
-  clusterIP: None 
-  ports: #----------------------------
-    - protocol: TCP
-    - port: 5672
-      name: rabbitmq
+  clusterIP: None # Headless service for StatefulSet
+  ports:
+    - name: rabbitmq
+      protocol: TCP
+      port: 5672
       targetPort: 5672
-
-    - protocol: TCP
-    - port: 15672
-      name: management
+    - name: management
+      protocol: TCP
+      port: 15672
       targetPort: 15672
-
     #----Prometheus-----------------
-    # - port: 9090
-    #   name: exporter
-    #   targetPort: exporter
-    #-------------------------------
-
+    # - name: exporter
+    #   protocol: TCP
+    #   port: 9090
+    #   targetPort: exporter  # Enable when Prometheus exporter is added
   selector:
     app.kubernetes.io/name: rabbitmq

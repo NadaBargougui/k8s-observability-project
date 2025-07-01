@@ -10,5 +10,5 @@ resources:
   - configmap.yaml
   - service-account.yaml
   - network-policy.yaml
-  - orbiter-service.yaml
-  - orbiter-statefulset.yaml
+  - arbiter-service.yaml
+  - arbiter-statefulset.yaml

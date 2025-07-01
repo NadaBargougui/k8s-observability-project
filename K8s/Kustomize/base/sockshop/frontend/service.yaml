@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: front-end
+  # annotations:
+  #   prometheus.io/scrape: 'true'
+  labels:
+    name: front-end
+spec:
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8079
+      nodePort: 30001
+  selector:
+    app.kubernetes.io/name: front-end
+# For the front, using a service or type Nodeport
+# isn't the best way to receive external traffic only en dev env
+
+# Using Loadbalancer (Cloud-based) with  ingress (+ nginx controller) is the best option
+

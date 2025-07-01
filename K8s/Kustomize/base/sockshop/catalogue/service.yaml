@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalogue
+  # annotations:
+  #   prometheus.io/scrape: 'true'
+  labels:
+    name: catalogue
+spec:
+  ports:
+    - protocol: TCP
+      port: 80 # The port the Service exposes inside the cluster (or to the internet)
+      targetPort: 8080 # The port on the container that receives the traffic
+  selector:
+    app.kubernetes.io/name: catalogue
+# Changed:
+# selector:  app: catalogue  → app.kubernetes.io/name: catalogue
+# Following Kubernetes recommended label schema
+# bcz it helps tools (like Helm, Argo CD, dashboards) understand the purpose of components.
+

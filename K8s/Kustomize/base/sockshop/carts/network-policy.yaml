@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: cart-access
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: carts
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              name: front-end
+        - podSelector:
+            matchLabels:
+              name: orders
+      ports:
+        - protocol: TCP
+          port: 80 # (the target port your pod is listening on/containerPort)

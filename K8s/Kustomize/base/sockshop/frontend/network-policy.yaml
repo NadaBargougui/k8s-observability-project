@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: front-end-access
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: front-end
+  policyTypes:
+    - Ingress
+  ingress:
+    - ports:
+        - protocol: TCP
+          port: 8079 # The target port your pod is listening on/containerPort
+
+# When we specify an ingress rule without a "from:",
+# that means: "Allow traffic from everywhere by default"

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: session-db
+  labels:
+    name: session-db
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: session-db
+  template:
+    metadata:
+      labels:
+        name: session-db
+      # annotations:
+      #   prometheus.io/scrape: "false"
+    spec:
+      containers:
+        - name: session-db
+          image: redis:alpine
+          env:
+          resources:
+            limits:
+              cpu: 300m
+              memory: 800Mi
+            requests:
+              cpu: 100m # 100 millicores (0.1 CPU)
+              memory: 300Mi
+          ports:
+            - name: redis
+              containerPort: 6379
+          securityContext:
+            capabilities:
+              drop:
+                - all
+              add:
+                - CHOWN
+                - SETGID
+                - SETUID
+            readOnlyRootFilesystem: true

@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: order-db-access
+spec:
+  podSelector:
+    matchLabels:
+      name: order-db
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector: # and don't forget to: kubectl label namespace sockshop name=sockshop and to verify: kubectl get namespace sockshop --show-labels
+            matchLabels:
+              name: sockshop
+          podSelector:
+            matchLabels:
+              name: orders
+      ports:
+        - protocol: TCP
+          port: 27017

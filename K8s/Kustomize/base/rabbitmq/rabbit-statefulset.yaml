@@ -114,3 +114,5 @@ spec:
 
 # annotations:
 #     prometheus.io/scrape: "false"
+
+# Tutorial: https://www.youtube.com/watch?v=_lpDfMkxccc&t=206s

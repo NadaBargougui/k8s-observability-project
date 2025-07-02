@@ -9,7 +9,7 @@ data:
 
     echo "Advertised Hostname: $MONGODB_ADVERTISED_HOSTNAME"
 
-    if [[ "$MY_POD_NAME" = "cart-db-0" ]]; then                          #-----------------------
+    if [[ "$MY_POD_NAME" = "cart-db-0" ]]; then                          
         echo "Pod name matches initial primary pod name, configuring node as a primary"
         export MONGODB_REPLICA_SET_MODE="primary"
     else

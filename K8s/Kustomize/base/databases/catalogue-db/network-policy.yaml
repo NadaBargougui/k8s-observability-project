@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: mysql-access
+spec:
+  podSelector:
+    matchLabels:
+      name: mysql
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - namespaceSelector: # and don't forget to: kubectl label namespace sockshop name=sockshop, and to verify: kubectl get namespace sockshop --show-labels
+            matchLabels:
+              name: sockshop
+          podSelector:
+            matchLabels:
+              name: catalogue
+      ports:
+        - protocol: TCP
+          port: 3306

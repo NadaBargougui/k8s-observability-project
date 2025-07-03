@@ -5,7 +5,7 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      app.kubernetes.io/name: carts
+      name: carts
   policyTypes:
     - Ingress
   ingress:
@@ -16,6 +16,12 @@ spec:
         - podSelector:
             matchLabels:
               name: orders
+        - namespaceSelector:
+            matchLabels:
+              name: database
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/name: cart-db
       ports:
         - protocol: TCP
           port: 80 # (the target port your pod is listening on/containerPort)

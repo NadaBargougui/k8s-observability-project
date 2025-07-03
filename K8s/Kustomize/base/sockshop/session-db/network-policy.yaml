@@ -5,7 +5,7 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      app.kubernetes.io/name: session-db
+      name: session-db
   policyTypes:
     - Ingress
   ingress:

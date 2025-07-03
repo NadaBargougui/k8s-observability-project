@@ -5,7 +5,7 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      app.kubernetes.io/name: catalogue
+      name: catalogue
   policyTypes:
     - Ingress
   ingress:
@@ -13,6 +13,12 @@ spec:
         - podSelector:
             matchLabels:
               name: front-end
+        - namespaceSelector:
+            matchLabels:
+              name: database
+          podSelector:
+            matchLabels:
+              app: mysql
       ports:
         - protocol: TCP
-          port: 8080 # (the target port your pod is listening on/containerPort)
+          port: 8080

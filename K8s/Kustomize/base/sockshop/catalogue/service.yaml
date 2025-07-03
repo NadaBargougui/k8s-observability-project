@@ -9,10 +9,10 @@ metadata:
 spec:
   ports:
     - protocol: TCP
-      port: 80 # The port the Service exposes inside the cluster (or to the internet)
-      targetPort: 8080 # The port on the container that receives the traffic
+      port: 80 # The port of the Service
+      targetPort: 8080 # The port on the container
   selector:
-    app.kubernetes.io/name: catalogue
+    name: catalogue
 # Changed:
 # selector:  app: catalogue  → app.kubernetes.io/name: catalogue
 # Following Kubernetes recommended label schema

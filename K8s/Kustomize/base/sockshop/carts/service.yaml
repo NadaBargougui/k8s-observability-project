@@ -7,9 +7,9 @@ metadata:
   labels:
     name: carts
 spec:
-  selector:
-    app.kubernetes.io/name: MyApp
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
+  selector:
+    name: carts

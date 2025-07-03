@@ -5,7 +5,7 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      app.kubernetes.io/name: orders
+      name: orders
   policyTypes:
     - Ingress
   ingress:
@@ -13,6 +13,12 @@ spec:
         - podSelector:
             matchLabels:
               name: front-end
+        - namespaceSelector:
+            matchLabels:
+              name: database
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/name: order-db
       ports:
         - protocol: TCP
           port: 80

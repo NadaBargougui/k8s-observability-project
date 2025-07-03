@@ -1,0 +1,74 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sockshop-ingress
+  namespace: ingress-nginx
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true" # if your Ingress paths include (/|$)(.*)
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /front-end(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: front-end.sockshop.svc.cluster.local
+                namespace: sockshop
+                port:
+                  number: 80
+
+          - path: /user(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: user.sockshop.svc.cluster.local
+                namespace: sockshop
+                port:
+                  number: 80
+
+          - path: /catalogue(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: catalogue.sockshop.svc.cluster.local
+                namespace: sockshop
+                port:
+                  number: 80
+
+          - path: /carts(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: carts.sockshop.svc.cluster.local
+                namespace: sockshop
+                port:
+                  number: 80
+
+          - path: /orders(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: orders.sockshop.svc.cluster.local
+                namespace: sockshop
+                port:
+                  number: 80
+
+          - path: /payment(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: payment.sockshop.svc.cluster.local
+                namespace: sockshop
+                port:
+                  number: 80
+
+          - path: /shipping(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: shipping.sockshop.svc.cluster.local
+                namespace: sockshop
+                port:
+                  number: 80

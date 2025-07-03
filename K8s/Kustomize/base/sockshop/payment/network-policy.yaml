@@ -5,7 +5,7 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      app.kubernetes.io/name: payment
+      name: payment
   policyTypes:
     - Ingress
   ingress:

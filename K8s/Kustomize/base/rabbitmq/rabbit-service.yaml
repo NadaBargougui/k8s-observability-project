@@ -22,4 +22,4 @@ spec:
     #   port: 9090
     #   targetPort: exporter  # Enable when Prometheus exporter is added
   selector:
-    app.kubernetes.io/name: rabbitmq
+    app: rabbitmq

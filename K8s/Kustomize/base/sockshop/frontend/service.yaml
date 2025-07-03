@@ -7,9 +7,9 @@ metadata:
   labels:
     name: front-end
 spec:
-  type: ClusterIP
   ports:
     - protocol: TCP
-      port: 80
+    - port: 80
+      targetPort: 8079
   selector:
-    app.kubernetes.io/name: front-end
+    name: front-end

@@ -2,10 +2,11 @@ apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: user-db-access
+  namespace: database
 spec:
   podSelector:
     matchLabels:
-      name: user-db
+      app: user-db
   policyTypes:
     - Ingress
   ingress:

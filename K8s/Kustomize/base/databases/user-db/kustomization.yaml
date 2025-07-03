@@ -6,9 +6,5 @@ namespace: database
 resources:
   - service.yaml
   - statefulset.yaml
-  - secret.yaml
   - configmap.yaml
-  - service-account.yaml
   - network-policy.yaml
-  - arbiter-service.yaml
-  - arbiter-statefulset.yaml

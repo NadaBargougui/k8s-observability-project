@@ -5,7 +5,7 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      app.kubernetes.io/name: queue-master
+      name: queue-master
   policyTypes:
     - Ingress
   ingress:

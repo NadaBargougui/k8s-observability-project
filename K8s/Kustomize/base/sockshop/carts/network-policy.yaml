@@ -24,4 +24,4 @@ spec:
               app.kubernetes.io/name: cart-db
       ports:
         - protocol: TCP
-          port: 80 # (the target port your pod is listening on/containerPort)
+          port: 80
